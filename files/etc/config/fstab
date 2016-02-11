@@ -1,0 +1,21 @@
+# (C) 2016 Hendrik Linka (Fraunhofer Gesellschaft)
+# Mount SD-Card
+
+config 'global' 'automount'
+	option from_fstab 1
+	option anon_mount 1
+
+config 'mount'
+	option target '/mnt/sda1'
+	option device '/dev/sda1'
+	option fstype 'vfat'
+	option enbaled '1'
+	option enabled_fsck '0'
+
+config 'global' 'autoswap'
+	option 'from_fstab' '1'
+	option anon_mount '1'
+
+config 'swap'
+	option enabled '1'
+	option device '/dev/sda2'
