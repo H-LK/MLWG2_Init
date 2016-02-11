@@ -13,19 +13,7 @@ start() {
 		echo Config exists > /dev/kmsg
 		# Copy only files that are bigger than zero.
 		find /mnt/sda1/config/* -size +1c -exec cp -r {} /etc/config \;
-
-		#Change StandardSSID
-		if [ `uci get wireless.@wifi-iface[0].ssid` = "WRTNEW" ]; then
-			echo Found Standard-SSID...
-			echo Changing SSID to:
-			mac=`ifconfig wlan0 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}'`
-			ssid=WRT-$mac
-			echo $ssid
-			uci set wireless.@wifi-iface[0].ssid=$ssid
-			uci set network.wan.macaddr=$mac
-			uci commit
-			wifi
-		fi
+		
 	fi
 	echo `ls /mnt/sda1` > /dev/kmsg
 }
