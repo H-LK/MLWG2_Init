@@ -6,7 +6,7 @@ https://wiki.openwrt.org/doc/howto/buildroot.exigence
 
 - Before step 5 copy `files` to `trunk`.
 - Create directory /files/mnt/sda1
-- 
+
 ```
 *@* ~/openwrt/trunk $ ls
 bin          docs                include        min.config.old  target
