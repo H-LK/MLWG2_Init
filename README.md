@@ -10,4 +10,4 @@ Before step 5 copy `fstab` and `rc.local` to `/init.d` and `/etc` (Create the di
 
 
 
-The script searches for something like `fhg_mlwg2_v1.0.bin`. Change rc.local line 5 and 8 to search for other image files.
+The script searches for something like `fhg_mlwg2_v1.0.bin`. Change `rc.local` line 5 and 8 to search for other image files.
