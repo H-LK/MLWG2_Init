@@ -4,10 +4,9 @@ Use the OpenWRT Buildroot Tutorial to build your own Image.
 https://wiki.openwrt.org/doc/howto/buildroot.exigence
 
 
-Before step 5 copy `fstab` and `rc.local` to `/init.d` and `/etc` (Create the directories if they does not exist!)
-- Copy fstab to /trunk/files/etc/init.d/
-- Copy rc.local to  /trunk/files/etc/
-
+- Before step 5 copy `files` to `trunk`.
+- Create directory /files/mnt/sda1
+- 
 ```
 *@* ~/openwrt/trunk $ ls
 bin          docs                include        min.config.old  target
