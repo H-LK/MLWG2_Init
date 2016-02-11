@@ -1,0 +1,36 @@
+#!/bin/sh /etc/rc.common
+# (C) 2013 openwrt.org
+# (C) 2016 Hendrik Linka (Fraunhofer Gesellschaft)
+
+START=13
+
+start() {
+	echo "this file has been obsoleted. please call \"/sbin/block mount\" directly"
+	/sbin/block mount
+	/bin/usb_sync &
+	#Check if config exists
+	if [ -d "/mnt/sda1/config" ]; then
+		echo Config exists > /dev/kmsg
+		# Copy only files that are bigger than zero.
+		find /mnt/sda1/config/* -size +1c -exec cp -r {} /etc/config \;
+
+		#Change StandardSSID
+		if [ `uci get wireless.@wifi-iface[0].ssid` = "WRTNEW" ]; then
+			echo Found Standard-SSID...
+			echo Changing SSID to:
+			mac=`ifconfig wlan0 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}'`
+			ssid=WRT-$mac
+			echo $ssid
+			uci set wireless.@wifi-iface[0].ssid=$ssid
+			uci set network.wan.macaddr=$mac
+			uci commit
+			wifi
+		fi
+	fi
+	echo `ls /mnt/sda1` > /dev/kmsg
+}
+
+stop() {
+	echo "this file has been obsoleted. please call \"/sbin/block umount\" directly"
+	/sbin/block umount
+}
